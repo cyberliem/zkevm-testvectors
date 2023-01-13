@@ -1,0 +1,153 @@
+[
+  {
+    "id": 0,
+    "description": "Try poseidon hash with 2 member",
+    "arity": 4,
+    "chainIdSequencer": 1001,
+    "defaultChainId": 1000,
+    "sequencerAddress": "0x617b3a3528F9cDd6630fd3301B9c8911F7Bf063D",
+    "sequencerPvtKey": "0x28b2b0318721be8c8339199172cd7cc8f5e273800a35616ec893083a4b32c02e",
+    "genesis": {
+      "accounts": [
+        {
+          "address": "0x617b3a3528F9cDd6630fd3301B9c8911F7Bf063D",
+          "pvtKey": "0x28b2b0318721be8c8339199172cd7cc8f5e273800a35616ec893083a4b32c02e",
+          "balance": "100000000000000000000",
+          "nonce": "0"
+        },
+        {
+          "address": "0x4d5Cf5032B2a844602278b01199ED191A86c93ff",
+          "pvtKey": "0x4d27a600dce8c29b7bd080e29a26972377dbb04d7a27d919adbb602bf13cfd23",
+          "balance": "200000000000000000000",
+          "nonce": "0"
+        }
+      ],
+      "contracts": [
+        {
+          "contractName": "Poseidon",
+          "paramsDeploy": {}
+        },
+        {
+          "contractName": "Token",
+          "paramsDeploy": {
+            "types": [
+              "string"
+            ],
+            "values": [
+              "ZKCOINA"
+            ]
+          }
+        },
+        {
+          "contractName": "Token",
+          "paramsDeploy": {
+            "types": [
+              "string"
+            ],
+            "values": [
+              "ZKCOINB"
+            ]
+          }
+        }
+      ]
+    },
+    "txs": [
+      {
+        "from": "0x617b3a3528F9cDd6630fd3301B9c8911F7Bf063D",
+        "to": "contract",
+        "nonce": "0",
+        "value": "0",
+        "contractAddress": "0x1275fbb540c8efc58b812ba83b0d0b8b9917ae98",
+        "abiName": "Poseidon",
+        "function": "hashmultiple",
+        "params": [
+          [
+            "1",
+            "1"
+          ],
+          "15"
+        ],
+        "gasLimit": 20000000,
+        "gasPrice": "10000000",
+        "chainId": 1000,
+        "execTime": 10
+      },
+      {
+        "from": "0x617b3a3528F9cDd6630fd3301B9c8911F7Bf063D",
+        "to": "contract",
+        "nonce": "1",
+        "value": "0",
+        "contractAddress": "0x1275fbb540c8efc58b812ba83b0d0b8b9917ae98",
+        "abiName": "Poseidon",
+        "function": "hashmultiple",
+        "params": [
+          [
+            "1",
+            "1"
+          ],
+          "15"
+        ],
+        "gasLimit": 20000000,
+        "gasPrice": "10000000",
+        "chainId": 1000,
+        "execTime": 10
+      }
+    ],
+    "timestamp": 1944498031,
+    "chainID": 1000,
+    "globalExitRoot": "0x090bcaf734c4f06c93954a827b45a6e8c67b8e0fd1e0a35a1c5982d6961828f9",
+    "batchL2Data": "0xf88b80839896808401312d00941275fbb540c8efc58b812ba83b0d0b8b9917ae9880b864627ce76e00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000f8203e880809c2be507ec9affb16ee35074941eeff68d0de8981d9733ecc30c2346b956c3415121c7f2f3279474e0df4967457d6e16cc733afff302c3a2040c81e7874d9b4c1cf88b01839896808401312d00941275fbb540c8efc58b812ba83b0d0b8b9917ae9880b864627ce76e00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000f8203e88080904d5a887a12c4ef32d7d76ad110367197eb68f8a44478f446d968bc579cda9b3074768a191769a140396522e25c83b09ee6d8e8604ebb5f4ebfe5eb578c2cd21c",
+    "newLocalExitRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "expectedOldRoot": "0x7abf07c1ceb42eea309078852dd5d7e600ffbd1333ca4bfeec6ec23b73e17679",
+    "expectedNewRoot": "0xf7362f6f52e889e35cdee89d0cf9b4bbea354426b065de92f9bc92fa5f536b37",
+    "expectedNewLeafs": {
+      "0x617b3a3528F9cDd6630fd3301B9c8911F7Bf063D": {
+        "balance": "100000000000000000000",
+        "nonce": "2",
+        "storage": null,
+        "hashBytecode": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "bytecodeLength": 0
+      },
+      "0x4d5Cf5032B2a844602278b01199ED191A86c93ff": {
+        "balance": "200000000000000000000",
+        "nonce": "0",
+        "storage": null,
+        "hashBytecode": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "bytecodeLength": 0
+      },
+      "0x1275fbb540c8efc58b812ba83b0d0b8b9917ae98": {
+        "balance": "0",
+        "nonce": "1",
+        "storage": {},
+        "hashBytecode": "0x5403e4acd235b9ffae2dfc43187634c8339b4aa6cb01faa18c701f42b43fc92e",
+        "bytecodeLength": 8521
+      },
+      "0x85e844b762a271022b692cf99ce5c59ba0650ac8": {
+        "balance": "0",
+        "nonce": "1",
+        "storage": {
+          "0x0000000000000000000000000000000000000000000000000000000000000005": "0x12",
+          "0x0000000000000000000000000000000000000000000000000000000000000007": "0x617b3a3528f9cdd6630fd3301b9c8911f7bf063d00",
+          "0x0000000000000000000000000000000000000000000000000000000000000003": "0x5a4b434f494e410000000000000000000000000000000000000000000000000e",
+          "0x0000000000000000000000000000000000000000000000000000000000000004": "0x5a4b434f494e410000000000000000000000000000000000000000000000000e"
+        },
+        "hashBytecode": "0x2ea61edd30278c68e6b58d8c18cdf1b2993dccc48226bedc0548aa494a08e89d",
+        "bytecodeLength": 7938
+      },
+      "0x13db4b51c5174ee2366e878a367aa1d426970ade": {
+        "balance": "0",
+        "nonce": "1",
+        "storage": {
+          "0x0000000000000000000000000000000000000000000000000000000000000005": "0x12",
+          "0x0000000000000000000000000000000000000000000000000000000000000007": "0x617b3a3528f9cdd6630fd3301b9c8911f7bf063d00",
+          "0x0000000000000000000000000000000000000000000000000000000000000003": "0x5a4b434f494e420000000000000000000000000000000000000000000000000e",
+          "0x0000000000000000000000000000000000000000000000000000000000000004": "0x5a4b434f494e420000000000000000000000000000000000000000000000000e"
+        },
+        "hashBytecode": "0x2ea61edd30278c68e6b58d8c18cdf1b2993dccc48226bedc0548aa494a08e89d",
+        "bytecodeLength": 7938
+      }
+    },
+    "batchHashData": "0xef63d07a5308a6302816e3e548124db8f35e17994420b63e6b70bcdaeb83df01",
+    "oldAccInputHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  }
+]
