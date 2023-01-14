@@ -6,18 +6,19 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable import/no-extraneous-dependencies */
+
 const Common = require('@ethereumjs/common').default;
-const { Hardfork } = require('@ethereumjs/common');
-const { BN, toBuffer } = require('ethereumjs-util');
-const { ethers } = require('ethers');
+const {Hardfork} = require('@ethereumjs/common');
+const {BN, toBuffer} = require('ethereumjs-util');
+const {ethers} = require('ethers');
 const hre = require('hardhat');
 const lodash = require('lodash');
 
 const zkcommonjs = require('@0xpolygonhermez/zkevm-commonjs');
-const { expect } = require('chai');
-const { Transaction } = require('@ethereumjs/tx');
+const {expect} = require('chai');
+const {Transaction} = require('@ethereumjs/tx');
 
-const { argv } = require('yargs');
+const {argv} = require('yargs');
 const fs = require('fs');
 const path = require('path');
 const helpers = require('../helpers/helpers');
@@ -25,7 +26,7 @@ const helpers = require('../helpers/helpers');
 // example: npx mocha gen-inputs.js --vectors txs-calldata --inputs input_ --update --output
 
 describe('Generate inputs executor from test-vectors', async function () {
-    this.timeout(100000);
+    this.timeout(10000000);
     let poseidon;
     let F;
     let inputName;
@@ -38,6 +39,7 @@ describe('Generate inputs executor from test-vectors', async function () {
     let internalTestVectorsPath;
     let evmDebug;
     let file;
+
 
     before(async () => {
         poseidon = await zkcommonjs.getPoseidon();
@@ -108,7 +110,7 @@ describe('Generate inputs executor from test-vectors', async function () {
             // setup new VM
             output.contractsBytecode = {};
             for (let j = 0; j < genesis.length; j++) {
-                const { bytecode } = genesis[j];
+                const {bytecode} = genesis[j];
                 if (bytecode) {
                     const hashByteCode = await zkcommonjs.smtUtils.hashContractBytecode(bytecode);
                     output.contractsBytecode[hashByteCode] = bytecode;
@@ -128,7 +130,7 @@ describe('Generate inputs executor from test-vectors', async function () {
 
             // TRANSACTIONS
             const txsList = [];
-            let commonCustom = Common.custom({ chainId: chainID }, { hardfork: Hardfork.Berlin });
+            let commonCustom = Common.custom({chainId: chainID}, {hardfork: Hardfork.Berlin});
 
             for (let j = 0; j < txs.length; j++) {
                 let isLegacy = false;
@@ -152,7 +154,7 @@ describe('Generate inputs executor from test-vectors', async function () {
                 };
                 if (typeof currentTx.chainId === 'undefined') {
                     isLegacy = true;
-                    commonCustom = Common.custom({ chainId: chainID }, { hardfork: Hardfork.TangerineWhistle });
+                    commonCustom = Common.custom({chainId: chainID}, {hardfork: Hardfork.TangerineWhistle});
                 } else {
                     txData.chainId = new BN(currentTx.chainId);
                 }
@@ -161,9 +163,9 @@ describe('Generate inputs executor from test-vectors', async function () {
                     txData.s = new BN(currentTx.s.slice(2), 'hex');
                     txData.r = new BN(currentTx.r.slice(2), 'hex');
                     txData.v = new BN(currentTx.v.slice(2), 'hex');
-                    tx = Transaction.fromTxData(txData, { common: commonCustom });
+                    tx = Transaction.fromTxData(txData, {common: commonCustom});
                 } else {
-                    tx = Transaction.fromTxData(txData, { common: commonCustom }).sign(toBuffer(accountFrom.pvtKey));
+                    tx = Transaction.fromTxData(txData, {common: commonCustom}).sign(toBuffer(accountFrom.pvtKey));
                 }
                 if (currentTx.overwrite) {
                     // eslint-disable-next-line no-restricted-syntax
@@ -184,7 +186,10 @@ describe('Generate inputs executor from test-vectors', async function () {
                     }
                     to = '0x';
                     const hashByteCode = await zkcommonjs.smtUtils.hashContractBytecode(currentTx.deployedBytecode);
-                    const contractAddress = ethers.utils.getContractAddress({ from: accountFrom.address, nonce: txData.nonce });
+                    const contractAddress = ethers.utils.getContractAddress({
+                        from: accountFrom.address,
+                        nonce: txData.nonce
+                    });
                     output.contractsBytecode[contractAddress.toLowerCase()] = hashByteCode;
                 } else {
                     to = tx.to;
@@ -219,7 +224,12 @@ describe('Generate inputs executor from test-vectors', async function () {
 
             // Compare storage
             await batch.executeTxs();
-
+            let executedTxs = batch.getUpdatedAccountsBatch();
+            console.log(`executed ${executedTxs}`);
+            for (let j = 0; j < executedTxs.length; j++) {
+                let ttxx = executedTxs[j];
+                console.log(`tx: ${ttxx}`);
+            }
             if (evmDebug) {
                 try {
                     await generateEvmDebugFile(batch.evmSteps, `${file.split('.')[0]}-${i}.json`);
@@ -241,7 +251,9 @@ describe('Generate inputs executor from test-vectors', async function () {
             // eslint-disable-next-line no-restricted-syntax
             for (const [address] of Object.entries(expectedNewLeafs)) {
                 const newLeaf = await zkEVMDB.getCurrentAccountState(address);
-                if (update) { expectedNewLeafs[address] = { balance: newLeaf.balance.toString(), nonce: newLeaf.nonce.toString() }; }
+                if (update) {
+                    expectedNewLeafs[address] = {balance: newLeaf.balance.toString(), nonce: newLeaf.nonce.toString()};
+                }
 
                 expect(newLeaf.balance.toString()).to.equal(expectedNewLeafs[address].balance);
                 expect(newLeaf.nonce.toString()).to.equal(expectedNewLeafs[address].nonce);
@@ -249,7 +261,9 @@ describe('Generate inputs executor from test-vectors', async function () {
                 const storage = await zkEVMDB.dumpStorage(address);
                 const hashBytecode = await zkEVMDB.getHashBytecode(address);
                 const bytecodeLength = await zkEVMDB.getLength(address);
-                if (update) { expectedNewLeafs[address].storage = storage; }
+                if (update) {
+                    expectedNewLeafs[address].storage = storage;
+                }
                 expect(lodash.isEqual(storage, expectedNewLeafs[address].storage)).to.be.equal(true);
 
                 if (update) {
