@@ -1,0 +1,101 @@
+[
+  {
+    "id": 0,
+    "description": "Gen keccak hash with n time member",
+    "arity": 4,
+    "chainIdSequencer": 1001,
+    "defaultChainId": 1000,
+    "sequencerAddress": "0x617b3a3528F9cDd6630fd3301B9c8911F7Bf063D",
+    "sequencerPvtKey": "0x28b2b0318721be8c8339199172cd7cc8f5e273800a35616ec893083a4b32c02e",
+    "genesis": {
+      "accounts": [
+        {
+          "address": "0x617b3a3528F9cDd6630fd3301B9c8911F7Bf063D",
+          "pvtKey": "0x28b2b0318721be8c8339199172cd7cc8f5e273800a35616ec893083a4b32c02e",
+          "balance": "100000000000000000000",
+          "nonce": "0"
+        },
+        {
+          "address": "0x4d5Cf5032B2a844602278b01199ED191A86c93ff",
+          "pvtKey": "0x4d27a600dce8c29b7bd080e29a26972377dbb04d7a27d919adbb602bf13cfd23",
+          "balance": "200000000000000000000",
+          "nonce": "0"
+        }
+      ],
+      "contracts": [
+        {
+          "contractName": "KeccakTest",
+          "paramsDeploy": {}
+        }
+      ]
+    },
+    "txs": [
+      {
+        "from": "0x617b3a3528F9cDd6630fd3301B9c8911F7Bf063D",
+        "to": "contract",
+        "nonce": "0",
+        "value": "0",
+        "contractAddress": "0x1275fbb540c8efc58b812ba83b0d0b8b9917ae98",
+        "abiName": "KeccakTest",
+        "function": "hashmultiple",
+        "params": [
+          [
+            "1",
+            "1"
+          ],
+          "1"
+        ],
+        "gasLimit": 20000000,
+        "gasPrice": "10000000",
+        "chainId": 1000,
+        "execTime": 10
+      }
+    ],
+    "timestamp": 1944498031,
+    "chainID": 1000,
+    "globalExitRoot": "0x090bcaf734c4f06c93954a827b45a6e8c67b8e0fd1e0a35a1c5982d6961828f9",
+    "batchL2Data": "0xf88b80839896808401312d00941275fbb540c8efc58b812ba83b0d0b8b9917ae9880b864627ce76e00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000f8203e880809c2be507ec9affb16ee35074941eeff68d0de8981d9733ecc30c2346b956c3415121c7f2f3279474e0df4967457d6e16cc733afff302c3a2040c81e7874d9b4c1c",
+    "newLocalExitRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "expectedOldRoot": "0x237744d0b19a302f834ca4cec8fa061169d040bdde30da4508b4b4283471fb87",
+    "expectedNewRoot": "0xbc4d4ce7ef3a1c29f65ac932121411646614971ddc1f2a180444e552486c5ca4",
+    "expectedNewLeafs": {
+      "0x617b3a3528F9cDd6630fd3301B9c8911F7Bf063D": {
+        "balance": "100000000000000000000",
+        "nonce": "1",
+        "storage": null,
+        "hashBytecode": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "bytecodeLength": 0
+      },
+      "0x4d5Cf5032B2a844602278b01199ED191A86c93ff": {
+        "balance": "200000000000000000000",
+        "nonce": "0",
+        "storage": null,
+        "hashBytecode": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "bytecodeLength": 0
+      },
+      "0x1275fbb540c8efc58b812ba83b0d0b8b9917ae98": {
+        "balance": "0",
+        "nonce": "1",
+        "storage": {},
+        "hashBytecode": "0xed80bec5a3aedd9872de6dcb5edbc25b89d56ac66db4388d1e55381ec4439121",
+        "bytecodeLength": 294
+      },
+      "0x85e844b762a271022b692cf99ce5c59ba0650ac8": {
+        "balance": "0",
+        "nonce": "0",
+        "storage": null,
+        "hashBytecode": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "bytecodeLength": 0
+      },
+      "0x13db4b51c5174ee2366e878a367aa1d426970ade": {
+        "balance": "0",
+        "nonce": "0",
+        "storage": null,
+        "hashBytecode": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "bytecodeLength": 0
+      }
+    },
+    "batchHashData": "0xd500a8d67e3541a899b61b105b5d270ad037cb7c98d44b465b0545eecefecc6a",
+    "oldAccInputHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  }
+]
