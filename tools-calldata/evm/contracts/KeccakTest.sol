@@ -7,7 +7,7 @@ contract KeccakTest {
         uint i = 0;
         bytes32 tmp;
         for (i = 0; i < times; i += 1) {
-            tmp = keccak256(abi.encodePacked(input[0], input[1]));
+            tmp = keccak256(abi.encodePacked(input[0]+i, input[1]+i));
         }
         result = tmp;
     }
